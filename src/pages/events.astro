@@ -36,7 +36,7 @@ const randomImage = images[Math.floor(Math.random() * images.length)].default;
                 {sortedEvents.map((event: any) => <EventLink url={event.url} title={event.frontmatter.title} date={event.frontmatter.date} />)}
             </ul>
         </div>
-        <div class="eventBlock">
+        <div class="imageBlock">
             <Image class="randomImage" src={randomImage} alt="Random event image" />
         </div>
     </div>
@@ -61,11 +61,23 @@ const randomImage = images[Math.floor(Math.random() * images.length)].default;
         flex: 1;
     }
 
+    .imageBlock {
+        flex: 1;
+        display: none;
+    }
+
     .randomImage {
         width: 100%;
         height: auto;
         object-fit: contain;
         border: 2px solid black;
+    }
+
+    @media screen and (min-width: 800px) {
+        .imageBlock {
+            display: block;
+        }
+
     }
 
 </style>

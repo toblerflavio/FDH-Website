@@ -50,6 +50,7 @@ const images = await Promise.all(
 <style>
     .memberBlock {
         display: flex;
+        flex-direction: column;
     }
 
     .memberPicture {
@@ -58,7 +59,8 @@ const images = await Promise.all(
 
     .memberText {
         flex: 2;
-        margin: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     img {
@@ -82,6 +84,14 @@ const images = await Promise.all(
         text-align: right;
     }
 
+    .memberPicture {
+        order: 1;
+    }
+
+    .memberText {
+        order: 2;
+    }
+
     p {
         display: block;
         margin: auto;
@@ -89,6 +99,22 @@ const images = await Promise.all(
         background-color: #B87333;
         border: 2px solid black;
         padding: 20px;
+    }
+
+    @media screen and (min-width: 800px) {
+        .memberBlock {
+            flex-direction: row;
+        }
+
+
+        .memberPicture {
+            order: 0;
+        }
+
+        .memberText {
+            order: 0;
+        }
+
     }
 
 </style>
