@@ -1,0 +1,22 @@
+---
+import '../styles/navigation.css';
+const { currentPage } = Astro.props;
+const navItems = [
+    {id: 'index', name: 'Verein', href: '/'},
+    {id: 'members', name: 'Mitglieder', href: '/members'},
+    {id: 'events', name: 'Events', href: '/events'},
+    {id: 'calendar', name: 'Terminkalender', href: '/calendar'},
+    {id: 'contact', name: 'Kontakt', href: '/contact'},
+];
+const currentItem = navItems.find(item => item.id === currentPage);
+---
+<div id="nav-menu" class="nav-links">
+    {navItems.map(item => (
+        <li>
+            <a href={item.href} class={item.id === currentPage ? 'active' : ''}>
+                {item.name}
+            </a>
+        </li>
+    ))}
+</div>
+

@@ -1,0 +1,19 @@
+---
+import Banner from "./Banner.astro";
+import Navigation from "./Navigation.astro";
+const { currentPage } = Astro.props;
+---
+<header>
+    <div>
+        <Banner />
+    </div>
+    <nav>
+        <div>
+            <Navigation currentPage={currentPage}/>
+        </div>
+    </nav>
+</header>
+
+
+
+

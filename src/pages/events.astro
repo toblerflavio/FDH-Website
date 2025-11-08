@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import EventLink from '../components/EventLink.astro';
+import { Image } from 'astro:assets';
+const pageTitle = "Events";
+const currentPage = "events";
+const allEvents = Object.values(import.meta.glob('./events/*.md', { eager: true }));
+
+
+const sortedEvents = allEvents
+    .sort((first: any, latest: any) => {
+        return new Date(latest.frontmatter.date).getTime() - new Date(first.frontmatter.date).getTime();
+    })
+    .filter((event: any) => {
+        const eventDate = new Date(event.frontmatter.date);
+        const now = new Date();
+        return (
+            event.frontmatter.title !== 'Gründung des Vereins' &&
+            eventDate < now
+        );
+    });
+
+
+const images = Object.values(import.meta.glob('/src/assets/eventImages/**/*.{jpg,jpeg,png,gif}',
+    { eager: true })) as { default: ImageMetadata }[];
+
+const randomImage = images[Math.floor(Math.random() * images.length)].default;
+
+
+---
+<Layout pageTitle={pageTitle} currentPage={currentPage}>
+    <h1>{pageTitle}</h1>
+    <div class="events">
+        <div class="eventBlock">
+            <ul>
+                {sortedEvents.map((event: any) => <EventLink url={event.url} title={event.frontmatter.title} date={event.frontmatter.date} />)}
+            </ul>
+        </div>
+        <div class="eventBlock">
+            <Image class="randomImage" src={randomImage} alt="Random event image" />
+        </div>
+    </div>
+</Layout>
+
+<style>
+    h1 {
+        display: block;
+        margin: auto;
+        text-align: center;
+        width: 90%;
+        margin-top: 20px;
+    }
+
+    .events {
+        display: flex;
+        font-size: 30px;
+        margin: 5%;
+    }
+
+    .eventBlock {
+        flex: 1;
+    }
+
+    .randomImage {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: 2px solid black;
+    }
+
+</style>

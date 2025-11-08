@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import CalendarComponent from '../components/Calendar.jsx';
+
+const pageTitle = "Terminkalender";
+const currentPage = "calendar";
+
+const events = Object.values(import.meta.glob('./events/*.md', { eager: true }))
+    .map(calendarEntry => ({
+        title: calendarEntry.frontmatter.title,
+        start: calendarEntry.frontmatter.date,
+        allDay: true,
+        backgroundColor: calendarEntry.frontmatter.backgroundColor,
+        textColor: calendarEntry.frontmatter.textColor,
+        url: calendarEntry.url
+    }));
+
+
+---
+<Layout pageTitle={pageTitle} currentPage={currentPage}>
+    <div class="calendarBox">
+        <CalendarComponent client:load events={events} />
+    </div>
+</Layout>
+<style>
+    .calendarBox {
+        width: 90%;
+        margin: auto;
+        margin-top: 10px;
+    }
+</style>

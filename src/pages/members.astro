@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import Member from '../components/Member.astro';
+const pageTitle = "Mitglieder";
+const currentPage = "members";
+
+const members = Object.values(import.meta.glob('./members/*.md', { eager: true }))
+---
+<Layout pageTitle={pageTitle} currentPage={currentPage}>
+    <h1>{pageTitle}</h1>
+    <div class="membersBlock">
+        {members.map((member: any, index: number) => <Member name={member.frontmatter.name} role={member.frontmatter.role} description={member.frontmatter.description} image={member.frontmatter.image.file} index={index} />)}
+    </div>
+</Layout>
+
+<style>
+    h1 {
+        display: block;
+        margin: auto;
+        text-align: center;
+        width: 90%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .membersBlock {
+        width: 90%;
+        margin: auto;
+    }
+</style>

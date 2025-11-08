@@ -1,11 +1,57 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/BaseLayout.astro';
+const pageTitle = "FDH-Vereinswebseite";
+const currentPage = "index";
 ---
 
-<Layout>
-	<Welcome />
+<Layout pageTitle={pageTitle} currentPage={currentPage}>
+	<h1>Wilkommen auf der Vereinswebseite der 'Freunde des Hopfens' oder kurz FDH</h1>
+	<img id="group_photo" src="Gruppenfoto.png" alt="Gruppenfoto">
+	<div>
+		<p>Der Verein bezweckt die Zusammenführung verschiedener Personen mit gleichen Interessen. Über den Verein werden Ausflüge geplant sowie Aktivitäten besprochen, welche notwendig sind für den Zusammenhalt der Vereinsmitglieder.
+			Wir treffen uns meistens Freitags ab 15.30 Uhr in der Laserbar Balgach. .......</p>
+	</div>
+
+
+
 </Layout>
+
+<style>
+	h1 {
+		display: block;
+		margin: auto;
+		text-align: center;
+		width: 90%;
+		margin-top: 20px;
+	}
+	img {
+		border: 2px solid black;
+		display: block;
+		margin: auto;
+		width: 90%;
+		margin-top: 20px;
+	}
+	p {
+		display: block;
+		margin: auto;
+		width: 90%;
+		margin-top: 20px;
+		background-color: #B87333;
+		border: 2px solid black;
+		padding: 20px;
+	}
+
+	@media screen and (min-width: 800px) {
+		h1 {
+
+			width: 75%;
+		}
+		img {
+			width: 75%;
+
+		}
+		p {
+			width: 75%;
+		}
+	}
+</style>

@@ -1,0 +1,78 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { Image } from 'astro:assets';
+const pageTitle = "Eventpage";
+const currentPage = "eventpage";
+const { frontmatter } = Astro.props;
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../assets/eventImages/**/*.{jpg,jpeg,png}');
+
+const filteredEntries = Object.entries(imageModules).filter(([path]) => path.includes(frontmatter.id));
+
+const images = await Promise.all(
+    filteredEntries.map(async ([_, resolver]) => {
+        const mod = await resolver();
+        return mod.default;
+    })
+);
+---
+<BaseLayout pageTitle={pageTitle} currentPage={currentPage}>
+    <h1>{frontmatter.title} {frontmatter.date} {frontmatter.starttime}</h1>
+    <p>{frontmatter.description}</p>
+
+
+    <div class="imageGallery">
+        {images.map((img) => (
+                <Image class="eventImage" src={img} alt="Filtered image" />
+        ))}
+    </div>
+
+</BaseLayout>
+
+<style>
+    h1 {
+        display: block;
+        margin: auto;
+        text-align: center;
+        width: 90%;
+        margin-top: 20px;
+    }
+
+    .imageGallery {
+        margin: auto;
+    }
+
+    img {
+        display: block;
+        width: 90%;
+        margin: auto;
+        margin-top: 10px;
+        height: auto;
+        border: 2px solid black;
+    }
+
+    p {
+        display: block;
+        margin: auto;
+        width: 90%;
+        margin-top: 20px;
+        background-color: #B87333;
+        border: 2px solid black;
+        padding: 20px;
+    }
+
+    @media screen and (min-width: 800px) {
+        h1 {
+
+            width: 75%;
+        }
+        img {
+            width: 75%;
+
+        }
+        p {
+            width: 75%;
+        }
+    }
+
+</style>

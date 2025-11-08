@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+const { name, role, description, image, index } = Astro.props;
+const isEven  = index % 2 === 0;
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../assets/members/*.{jpg,jpeg,png}');
+
+const filteredEntries = Object.entries(imageModules).filter(([path]) => path.includes(image));
+
+const images = await Promise.all(
+    filteredEntries.map(async ([_, resolver]) => {
+        const mod = await resolver();
+        return mod.default;
+    })
+);
+
+---
+
+{isEven  ? (
+        <hr />
+        <div class="memberBlock left">
+            <div class="memberPicture">
+                {images.map((img) => (
+                        <Image class="eventImage" src={img} alt="Filtered image" />
+                ))}
+            </div>
+            <div class="memberText">
+                <h2>{name}</h2>
+                <h3>Position: {role}</h3>
+                <p>{description}</p>
+            </div>
+        </div>
+
+    ) : (
+        <hr />
+        <div class="memberBlock right">
+            <div class="memberText">
+                <h2>{name}</h2>
+                <h3>Position: {role}</h3>
+                <p>{description}</p>
+            </div>
+            <div class="memberPicture">
+                {images.map((img) => (
+                        <Image class="eventImage" src={img} alt="Filtered image" />
+                ))}
+            </div>
+        </div>
+
+    )}
+<style>
+    .memberBlock {
+        display: flex;
+    }
+
+    .memberPicture {
+        flex: 1;
+    }
+
+    .memberText {
+        flex: 2;
+        margin: 20px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: 2px solid black;
+    }
+
+    hr {
+        border: none;
+        border-top: 5px solid black;
+        margin: 20px 0;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    p {
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+        background-color: #B87333;
+        border: 2px solid black;
+        padding: 20px;
+    }
+
+</style>

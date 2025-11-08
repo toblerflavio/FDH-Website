@@ -1,0 +1,40 @@
+.banner {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-image: url('/NoBicycle.png'), url('/Banner.png');
+    background-repeat: no-repeat, repeat-x;
+    background-position: 0 0, 0 0;
+    background-size: auto 50%, auto 100%;
+    animation: scrollBackground 90s linear infinite;
+}
+
+.bannerText {
+    text-align: center;
+    text-shadow:
+            -2px -2px 0 black,
+            2px -2px 0 black,
+            -2px  2px 0 black,
+            2px  2px 0 black;
+    position: relative;
+    z-index: 1;
+
+}
+
+
+@keyframes scrollBackground {
+    from {
+        background-position: -150% 70%, 0 0;
+    }
+    to {
+        background-position: 250% 70%, -100% 0;
+    }
+}
+
+
+@media screen and (min-width: 800px) {
+    .banner {
+        background-image: url('/AllBicycle.png'), url('/Banner.png');
+    }
+
+}
