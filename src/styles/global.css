@@ -59,3 +59,9 @@ footer a {
 .fc-h-event {
     color: #EF8C29;
 }
+
+@media screen and (max-width: 800px) {
+    .fc-toolbar {
+        flex-direction: column;
+    }
+}

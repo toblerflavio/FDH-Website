@@ -2,7 +2,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    background-image: url('/NoBicycle.png'), url('/Banner.png');
+    background-image: url('/AllBicycle.png'), url('/Banner.png');
     background-repeat: no-repeat, repeat-x;
     background-position: 0 0, 0 0;
     background-size: auto 50%, auto 100%;
@@ -32,9 +32,9 @@
 }
 
 
-@media screen and (min-width: 800px) {
+@media screen and (max-width: 800px) {
     .banner {
-        background-image: url('/AllBicycle.png'), url('/Banner.png');
+        background-image: url('/NoBicycle.png'), url('/Banner.png');
     }
 
 }

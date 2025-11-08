@@ -18,13 +18,13 @@ const images = await Promise.all(
 
 {isEven  ? (
         <hr />
-        <div class="memberBlock left">
+        <div class="memberBlock">
             <div class="memberPicture">
                 {images.map((img) => (
                         <Image class="eventImage" src={img} alt="Filtered image" />
                 ))}
             </div>
-            <div class="memberText">
+            <div class="memberText left">
                 <h2>{name}</h2>
                 <h3>Position: {role}</h3>
                 <p>{description}</p>
@@ -33,8 +33,8 @@ const images = await Promise.all(
 
     ) : (
         <hr />
-        <div class="memberBlock right">
-            <div class="memberText">
+        <div class="memberBlock">
+            <div class="memberText right">
                 <h2>{name}</h2>
                 <h3>Position: {role}</h3>
                 <p>{description}</p>
@@ -50,7 +50,6 @@ const images = await Promise.all(
 <style>
     .memberBlock {
         display: flex;
-        flex-direction: column;
     }
 
     .memberPicture {
@@ -59,7 +58,15 @@ const images = await Promise.all(
 
     .memberText {
         flex: 2;
+    }
+
+    .left {
+        text-align: left;
         margin-left: 20px;
+    }
+
+    .right {
+        text-align: right;
         margin-right: 20px;
     }
 
@@ -76,14 +83,6 @@ const images = await Promise.all(
         margin: 20px 0;
     }
 
-    .memberPicture {
-        order: 1;
-    }
-
-    .memberText {
-        order: 2;
-    }
-
     p {
         display: block;
         margin: auto;
@@ -93,24 +92,24 @@ const images = await Promise.all(
         padding: 20px;
     }
 
-    @media screen and (min-width: 800px) {
+    @media screen and (max-width: 800px) {
         .memberBlock {
-            flex-direction: row;
+            flex-direction: column;
         }
 
-
         .memberPicture {
-            order: 0;
+            order: 1;
         }
 
         .memberText {
-            order: 0;
+            order: 2;
+            margin-left: 0px;
+            margin-right: 0px;
         }
 
         .right {
-            text-align: right;
+            text-align: left;
         }
-
     }
 
 </style>

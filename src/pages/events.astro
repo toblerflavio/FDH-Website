@@ -63,7 +63,6 @@ const randomImage = images[Math.floor(Math.random() * images.length)].default;
 
     .imageBlock {
         flex: 1;
-        display: none;
     }
 
     .randomImage {
@@ -73,9 +72,9 @@ const randomImage = images[Math.floor(Math.random() * images.length)].default;
         border: 2px solid black;
     }
 
-    @media screen and (min-width: 800px) {
+    @media screen and (max-width: 800px) {
         .imageBlock {
-            display: block;
+            display: none;
         }
 
     }

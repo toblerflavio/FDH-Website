@@ -34,7 +34,7 @@ const images = await Promise.all(
         display: block;
         margin: auto;
         text-align: center;
-        width: 90%;
+        width: 75%;
         margin-top: 20px;
     }
 
@@ -44,7 +44,7 @@ const images = await Promise.all(
 
     img {
         display: block;
-        width: 90%;
+        width: 75%;
         margin: auto;
         margin-top: 10px;
         height: auto;
@@ -54,24 +54,24 @@ const images = await Promise.all(
     p {
         display: block;
         margin: auto;
-        width: 90%;
+        width: 75%;
         margin-top: 20px;
         background-color: #B87333;
         border: 2px solid black;
         padding: 20px;
     }
 
-    @media screen and (min-width: 800px) {
+    @media screen and (max-width: 800px) {
         h1 {
 
-            width: 75%;
+            width: 90%;
         }
         img {
-            width: 75%;
+            width: 90%;
 
         }
         p {
-            width: 75%;
+            width: 90%;
         }
     }
 
